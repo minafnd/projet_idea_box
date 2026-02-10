@@ -34,7 +34,7 @@
                     <div class="flex items-center text-gray-700">
                         <span class="text-lg mr-2">📅</span>
                         <span class="font-medium">Date :</span>
-                        <span class="ml-2">{{entry.event_date}}</span>
+                        <span class="ml-2">{{entry.event_date.strftime('%d/%m/%Y')}}</span>
                     </div>
                     <div class="flex items-center text-gray-700">
                         <span class="text-lg mr-2">📍</span>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="flex items-center text-gray-500 text-sm">
                         <span class="text-lg mr-2">🕒</span>
-                        <span>Proposé le {{entry.created_at}}</span>
+                        <span>Proposé le {{entry.created_at.strftime('%d/%m/%Y')}}</span>
                     </div>
                 </div>
                 <p class="text-gray-600 text-sm mb-4 line-clamp-3">{{entry.description}}</p>

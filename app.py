@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, flash, url_for
+from flask import Flask, request, render_template, redirect, flash, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -14,11 +14,11 @@ class Event(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable = False)
-    event_date = db.Column(db.DateTime, nullable = False)
+    event_date = db.Column(db.Date, nullable = False)
     event_type = db.Column(db.String(100), nullable = False)
     description = db.Column(db.Text, nullable = False)
     location = db.Column(db.String(100), nullable = False)
-    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    created_at = db.Column(db.Date, default=db.func.current_date())
 
     def __repr__(self):
         return f"Event('{self.title}', '{self.event_date}', '{self.event_type}', '{self.description}', '{self.location}', '{self.created_at}')"
@@ -85,6 +85,26 @@ def delete_event(event_id):
     flash("Evenement supprimée avec succès", "success")
     return redirect(url_for("events"))
 
+@app.route("/eventslist/<date>", methods = ["GET"])
+def list_events(date):
+    events = Event.query.all()
+    clean_event = []
+    chosen_date = datetime.strptime(date, '%Y-%m-%d').date()
+
+    for event in events:
+        if event.event_date > chosen_date and len(clean_event) < 5:
+            clean_event.append({
+            "id": event.id,
+            "title": event.title,
+            "type": event.event_type,
+            "date": event.event_date,
+            "description": event.description,
+            "event": event.location,
+            })
+
+    return jsonify({
+        "event":clean_event
+    })
+
 if __name__ == "__main__":
     app.run(debug=True)
-
