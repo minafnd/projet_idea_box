@@ -58,14 +58,13 @@ def form():
                 flash(error, "error")
             return redirect("/form")
         
-        event_date = datetime.strptime(event_date_str, '%Y-%m-%d').date()
+        event_date = datetime.strptime(event_date_str, '%Y-%m-%d').date() #j'ai du transformer le format de la date pour qu'elle puisse être sauvegardée en format date dans ma BDD
         
         entry = Event(title=title, event_date=event_date, event_type=event_type, description=description, location=location)
         db.session.add(entry)
         db.session.commit()
 
         flash("L'évènement a bien été créé ! 📅 ", "success")
-
         return render_template('form.html', title=title, event_date=event_date, event_type=event_type, description=description, location=location)
     
     return render_template("form.html")
