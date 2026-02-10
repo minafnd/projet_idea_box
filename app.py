@@ -64,6 +64,7 @@ def form():
         db.session.add(entry)
         db.session.commit()
 
+        flash("L'évènement a bien été créé ! 📅 ", "success")
 
         return render_template('form.html', title=title, event_date=event_date, event_type=event_type, description=description, location=location)
     
@@ -71,7 +72,19 @@ def form():
 
 @app.route("/events")
 def events():
-    return render_template("events.html")
+    entries = Event.query.all()
+    return render_template("events.html", entries = entries)
+
+@app.route("/delete-event/<int:event_id>")
+def delete_event(event_id):
+    entry = Event.query.get(event_id)
+    if not entry:
+        flash("Entrée d'historique non trouvée", "error")
+        return redirect(url_for("events"))
+    db.session.delete(entry)
+    db.session.commit()
+    flash("Evenement supprimée avec succès", "success")
+    return redirect(url_for("events"))
 
 if __name__ == "__main__":
     app.run(debug=True)

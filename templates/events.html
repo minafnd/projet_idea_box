@@ -1,3 +1,41 @@
 {% extends "base.html" %}
 {% block content %}
+{% include "flash.html" %}
+
+    {% for entry in entries %}
+
+        
+        <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-4">
+                <h3 class="text-xl font-bold text-white">{{entry.title}}</h3>
+                <span class="inline-block mt-2 px-3 py-1 bg-white bg-opacity-20 text-white text-sm rounded-full">{{entry.event_type}}</span>
+            </div>
+            <div class="p-6">
+                <div class="space-y-3 mb-4">
+                    <div class="flex items-center text-gray-700">
+                        <span class="text-lg mr-2">📅</span>
+                        <span class="font-medium">Date :</span>
+                        <span class="ml-2">{{entry.event_date}}</span>
+                    </div>
+                    <div class="flex items-center text-gray-700">
+                        <span class="text-lg mr-2">📍</span>
+                        <span class="font-medium">Lieu :</span>
+                        <span class="ml-2">{{entry.location}}</span>
+                    </div>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <span class="text-lg mr-2">🕒</span>
+                        <span>Proposé le {{entry.created_at}}</span>
+                    </div>
+                </div>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-3">{{entry.description}}</p>
+                <div class="flex justify-end">
+                    <button  class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md transition-colors duration-200 text-sm font-medium">
+                        <a href="{{ url_for('delete_event', event_id=entry.id) }}">🗑️ Supprimer</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
 {% endblock %}
