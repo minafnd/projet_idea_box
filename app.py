@@ -85,7 +85,7 @@ def delete_event(event_id):
     flash("Evenement supprimée avec succès", "success")
     return redirect(url_for("events"))
 
-@app.route("/eventslist/<date>", methods = ["GET"])
+@app.route("/events/<date>", methods = ["GET"])
 def list_events(date):
     events = Event.query.all()
     clean_event = []
