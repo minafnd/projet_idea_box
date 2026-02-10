@@ -1,0 +1,78 @@
+from flask import Flask, request, render_template, redirect, flash, url_for
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
+app = Flask(__name__)
+app.secret_key = "supersecretkey"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db' 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
+
+db = SQLAlchemy(app)
+
+class Event(db.Model):
+    __tablename__ = 'events'
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable = False)
+    event_date = db.Column(db.DateTime, nullable = False)
+    event_type = db.Column(db.String(100), nullable = False)
+    description = db.Column(db.Text, nullable = False)
+    location = db.Column(db.String(100), nullable = False)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+    def __repr__(self):
+        return f"Event('{self.title}', '{self.event_date}', '{self.event_type}', '{self.description}', '{self.location}', '{self.created_at}')"
+
+with app.app_context(): 
+    db.create_all()
+
+@app.route("/")
+def accueil():
+    return render_template("accueil.html")
+
+
+@app.route("/form", methods=["GET", "POST"])
+def form():
+    if request.method== "POST": 
+        title = request.form.get("title", "")
+        event_date_str = request.form.get("event_date", "")
+        event_type = request.form.get("event_type", "")
+        description = request.form.get("description", "")
+        location = request.form.get("location", "")
+
+        errors = []
+
+        if not title:
+            errors.append("Title is required.")
+        if not event_date_str: 
+            errors.append("Event date is required.")
+        if not event_type:
+            errors.append("Event type is required.")
+        if not description:
+            errors.append("Description is required.")
+        if not location:
+            errors.append("Location is required.")
+
+        if errors:
+            for error in errors:
+                flash(error, "error")
+            return redirect("/form")
+        
+        event_date = datetime.strptime(event_date_str, '%Y-%m-%d').date()
+        
+        entry = Event(title=title, event_date=event_date, event_type=event_type, description=description, location=location)
+        db.session.add(entry)
+        db.session.commit()
+
+
+        return render_template('form.html', title=title, event_date=event_date, event_type=event_type, description=description, location=location)
+    
+    return render_template("form.html")
+
+@app.route("/events")
+def events():
+    return render_template("events.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
+

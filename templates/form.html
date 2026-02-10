@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% include "flash.html" %}
+
+<div class="max-w-2xl mx-auto">
+    
+ 
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Proposer un nouvel événement</h2>
+        <p class="text-gray-600">Remplissez le formulaire ci-dessous pour proposer un événement interne</p>
+    </div>
+
+ 
+    <form class="bg-white rounded-lg shadow-md p-8" action="/form" method="POST">
+        
+        <div class="mb-6">
+            <label for="title" class="block text-gray-700 font-semibold mb-2">
+                Titre de l'événement <span class="text-red-500">*</span>
+            </label>
+            <input 
+                type="text" 
+                id="title" 
+                name="title" 
+                placeholder="Ex: Repas de fin d'année"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+            >
+        </div>
+
+        <!-- Type d'événement -->
+        <div class="mb-6">
+            <label for="event_type" class="block text-gray-700 font-semibold mb-2">
+                Type d'événement <span class="text-red-500">*</span>
+            </label>
+            <select 
+                id="event_type" 
+                name="event_type" 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-white"
+            >
+                <option value="">-- Sélectionnez un type --</option>
+                <option value="conference">Conférence</option>
+                <option value="team_building">Team Building</option>
+                <option value="sortie">Sortie</option>
+                <option value="repas_equipe">Repas d'équipe</option>
+                <option value="autre">Autre</option>
+            </select>
+        </div>
+
+        <div class="mb-6">
+            <label for="event_date" class="block text-gray-700 font-semibold mb-2">
+                Date proposée <span class="text-red-500">*</span>
+            </label>
+            <input 
+                type="date" 
+                id="event_date" 
+                name="event_date" 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+            >
+        </div>
+
+        <div class="mb-6">
+            <label for="location" class="block text-gray-700 font-semibold mb-2">
+                Lieu <span class="text-red-500">*</span>
+            </label>
+            <input 
+                type="text" 
+                id="location" 
+                name="location" 
+                placeholder="Ex: Le 124"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+            >
+        </div>
+
+    
+        <div class="mb-6">
+            <label for="description" class="block text-gray-700 font-semibold mb-2">
+                Description <span class="text-red-500">*</span>
+            </label>
+            <textarea 
+                id="description" 
+                name="description" 
+                rows="5"
+                placeholder="Décrivez votre proposition d'événement..."
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
+            ></textarea>
+            <p class="text-sm text-gray-500 mt-2">Fournissez une description claire et concise de l'événement</p>
+        </div>
+
+    
+        <div class="mb-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+            <p class="text-sm text-yellow-800">
+                <span class="font-semibold">⚠️ Tous les champs sont obligatoires.</span> Assurez-vous de remplir l'ensemble du formulaire avant de soumettre.
+            </p>
+        </div>
+
+    
+        <div class="flex gap-4 justify-end">
+            <a 
+                href="/events" 
+                class="px-6 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-lg transition-colors duration-200"
+            >
+                Annuler
+            </a>
+            <button 
+                type="submit" 
+                class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+            >
+                ✓ Proposer l'événement
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
