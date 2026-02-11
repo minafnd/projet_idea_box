@@ -87,20 +87,25 @@ def delete_event(event_id):
 
 @app.route("/events/<date>", methods = ["GET"])
 def list_events(date):
-    events = Event.query.all()
-    clean_event = []
     chosen_date = datetime.strptime(date, '%Y-%m-%d').date()
+    events = (
+        db.session.query(Event)
+        .filter(Event.event_date >= chosen_date)
+        .order_by(Event.event_date.asc())
+        .limit(5)
+        .all()
+    ) 
+    clean_event = []
 
     for event in events:
-        if event.event_date > chosen_date and len(clean_event) < 5:
-            clean_event.append({
-            "id": event.id,
-            "title": event.title,
-            "type": event.event_type,
-            "date": event.event_date,
-            "description": event.description,
-            "event": event.location,
-            })
+        clean_event.append({
+        "id": event.id,
+        "title": event.title,
+        "type": event.event_type,
+        "date": event.event_date,
+        "description": event.description,
+        "event": event.location,
+        })
 
     return jsonify({
         "event":clean_event
