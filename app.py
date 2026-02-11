@@ -36,11 +36,11 @@ def accueil():
 @app.route("/form", methods=["GET", "POST"]) #route pour le formulaire de création d'un évent
 def form():
     if request.method== "POST": 
-        title = request.form.get("title", "")
+        title = request.form.get("title", "").strip()
         event_date_str = request.form.get("event_date", "")
         event_type = request.form.get("event_type", "")
-        description = request.form.get("description", "")
-        location = request.form.get("location", "")
+        description = request.form.get("description", "").strip()
+        location = request.form.get("location", "").strip()
 
         errors = [] 
 
@@ -67,7 +67,7 @@ def form():
         db.session.commit()
 
         flash("L'évènement a bien été créé ! 📅 ", "success")
-        return render_template('form.html', title=title, event_date=event_date, event_type=event_type, description=description, location=location)
+        return redirect('/events')
     
     return render_template("form.html")
 
