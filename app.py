@@ -43,15 +43,15 @@ def form():
         errors = []
 
         if not title:
-            errors.append("Title is required.")
+            errors.append("Merci de renseigner le titre de l'évent.")
         if not event_date_str: 
-            errors.append("Event date is required.")
+            errors.append("Merci de renseigner la date de l'évent")
         if not event_type:
-            errors.append("Event type is required.")
+            errors.append("Merci de renseigner le type de l'évent.")
         if not description:
-            errors.append("Description is required.")
+            errors.append("Merci de donner une description à votre évent.")
         if not location:
-            errors.append("Location is required.")
+            errors.append("Merci de préciser le lieu de l'évent.")
 
         if errors:
             for error in errors:

@@ -22,12 +22,11 @@
                 type="text" 
                 id="title" 
                 name="title" 
-                placeholder="Ex: Repas de fin d'année"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                placeholder="Ex: Dégustation de riz crousty"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
             >
         </div>
 
-        <!-- Type d'événement -->
         <div class="mb-6">
             <label for="event_type" class="block text-gray-700 font-semibold mb-2">
                 Type d'événement <span class="text-red-500">*</span>
@@ -35,7 +34,7 @@
             <select 
                 id="event_type" 
                 name="event_type" 
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-white"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all bg-white"
             >
                 <option value="">-- Sélectionnez un type --</option>
                 <option value="Conférence">Conférence</option>
@@ -54,7 +53,7 @@
                 type="date" 
                 id="event_date" 
                 name="event_date" 
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
             >
         </div>
 
@@ -66,8 +65,8 @@
                 type="text" 
                 id="location" 
                 name="location" 
-                placeholder="Ex: Le 124"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                placeholder="Ex: Au 124"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
             >
         </div>
 
@@ -80,16 +79,15 @@
                 id="description" 
                 name="description" 
                 rows="5"
-                placeholder="Décrivez votre proposition d'événement..."
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
+                placeholder="Décrivez votre proposition d'évent..."
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all resize-none"
             ></textarea>
-            <p class="text-sm text-gray-500 mt-2">Fournissez une description claire et concise de l'événement</p>
         </div>
 
     
         <div class="mb-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
             <p class="text-sm text-yellow-800">
-                <span class="font-semibold">⚠️ Tous les champs sont obligatoires.</span> Assurez-vous de remplir l'ensemble du formulaire avant de soumettre.
+                <span class="font-semibold">⚠️ Tous les champs sont obligatoires.</span> 
             </p>
         </div>
 
@@ -103,7 +101,7 @@
             </a>
             <button 
                 type="submit" 
-                class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                class="px-6 py-3 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-500 hover:to-orange-500 text-white font-semibold rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
             >
                 ✓ Proposer l'événement
             </button>
