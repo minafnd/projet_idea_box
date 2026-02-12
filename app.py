@@ -84,7 +84,7 @@ def delete_event(event_id):
         return redirect(url_for("events"))
     db.session.delete(entry)
     db.session.commit()
-    flash("Evenement supprimée avec succès", "success")
+    flash("Evenement supprimé avec succès", "success")
     return redirect(url_for("events"))
 
 @app.route("/events/<date>", methods = ["GET"]) #route API REST qui retourne un json contenant au max les 5 prochains events en fonciton de la date saisie, format de la date à saisir: YYYY-MM-DD
