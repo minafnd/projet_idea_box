@@ -110,7 +110,6 @@ http://127.0.0.1:5000/
 ## 📄 Licence
 
 Aucune licence spécifiée pour le moment.  
-Vous pouvez en ajouter une si nécessaire (MIT, Apache 2.0, etc.).
 
 ---
 
