@@ -70,8 +70,7 @@ source ./.venv/bin/activate
 
 - **Windows**
 ```bash
-.÷
-.\.venv\Scripts\activate
+source ./.venv/Scripts/activate
 ```
 
 ### 4️⃣ Installer les dépendances
